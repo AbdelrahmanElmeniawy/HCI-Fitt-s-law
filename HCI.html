@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HCI fitt's law</title>
+		<style>
+			.container {
+				height: 200px;
+				position: relative;
+				border: 3px solid green;
+			}
+
+			.vertical-center {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			.button {
+				width: 40px;
+				float: left;
+ 				display: inline-block;
+				padding: 20px 0px;
+				font-size: 20px;
+				cursor: pointer;
+				text-align: center;
+				text-decoration: none;
+				outline: none;
+				color: #fff;
+				background-color: #4CAF50;
+				border: none;
+				box-shadow: 0 5px #999;
+			}
+			.button:hover {background-color: #3e8e41}
+			.button:active {
+				background-color: #3e8e41;
+				box-shadow: 0 2px #666;
+				transform: translateY(2px);
+			}
+		</style>
+	</head>
+	<body>
+		<br/>
+		<br/>
+		<form onsubmit = "mkmk(); return false;">
+			<label>Distance:</label>
+			<input type= "text" id = "dis">
+			<label>Width:</label>
+			<input type = "text" id = "wid">
+			<input type = "submit" id = "sub">
+		</form>
+		<br/>
+		<div class="container">
+			<div class="vertical-center">
+				<button onclick = "dodo(); return false;" class="button" id = "left" style="margin: 0px 50px 0px 0px;"></button>
+				<button onclick = "dodo(); return false;" class="button" id = "right" style = "margin: 0px 0px 0px 50px;"></button>
+			</div>
+		</div>
+		<br/>
+		<div id = "time">0</label>
+		<script>
+			let counter = 0;
+			let ans = 0;
+			function dodo(){
+				if (counter == 0){
+					var x = new Date();
+					ans = x.getTime();
+				} else if (counter == 5){
+					var x = new Date();
+					ans = x.getTime() - ans;
+					document.querySelector('#time').innerHTML = ans / 5;
+				}
+				counter++;
+			}
+			let dsds = 0;
+			let wdwd = 0;
+			function mkmk(){
+				dsds = document.querySelector('#dis').value;
+				wdwd = document.querySelector('#wid').value;
+				dsds = dsds / 2;
+				document.getElementById("left").style.width = wdwd + "px";
+				document.getElementById("right").style.width = wdwd + "px";
+				document.getElementById("left").style.marginRight = dsds + "px";
+				document.getElementById("right").style.marginLeft = dsds + "px";
+				counter = 0;
+				document.querySelector('#time').innerHTML = 0;
+			}
+		</script>
+	</body>
+</html>
